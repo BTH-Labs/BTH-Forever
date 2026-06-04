@@ -1,0 +1,13 @@
+name = "BTH Forever"
+author = "BTH Labs"
+version = "0.1.0"
+pack-format = "packwiz:1.1.0"
+
+[index]
+file = "index.toml"
+hash-format = "sha256"
+hash = "6010878a03c10e341b5fb5f98557cc9907fe64f00f2240264a9922cd326fb575"
+
+[versions]
+minecraft = "1.21.1"
+neoforge = "21.1.233"

@@ -1,0 +1,13 @@
+name = "C418 Music Restored"
+filename = "c418musicrestored-1.0.1-neoforge-1.21.1.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/CDp4unTW/versions/j4GgJUON/c418musicrestored-1.0.1-neoforge-1.21.1.jar"
+hash-format = "sha512"
+hash = "a369d2bdfe378587ec3426256e728782f8b3f69a981c49c9e04464f85a5c1f32a21e07f1a3be45fa6ff190e5aec0c8834d0395c92b18a36904b9c4190bee0b75"
+
+[update]
+[update.modrinth]
+mod-id = "CDp4unTW"
+version = "j4GgJUON"

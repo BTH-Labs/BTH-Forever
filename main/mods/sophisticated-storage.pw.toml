@@ -1,0 +1,13 @@
+name = "Sophisticated Storage"
+filename = "sophisticatedstorage-1.21.1-1.5.56.1779.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/hMlaZH8f/versions/Uv9fs75I/sophisticatedstorage-1.21.1-1.5.56.1779.jar"
+hash-format = "sha512"
+hash = "e60fb55473e268e6eca83690c629be835d0eca9ba32ed8b843f985bebbdb02ba41804ac6bc785c75b47db7e14311ced66861af73cbdcb568860aab88c5b9e69b"
+
+[update]
+[update.modrinth]
+mod-id = "hMlaZH8f"
+version = "Uv9fs75I"
