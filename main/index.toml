@@ -987,6 +987,11 @@ hash = "9088f93a00bc3242f0239a7115bdcbc4480e19c6120f5396fb3af27d77abda3e"
 metafile = true
 
 [[files]]
+file = "mods/tmrv.pw.toml"
+hash = "b28cc434de3932e66c46ed31a8e28d5ea1e28ad1b77f0a9bfa863cfc71c51071"
+metafile = true
+
+[[files]]
 file = "mods/tooltip-overhaul.pw.toml"
 hash = "eb78f8600a136d1fbe506b5f7ae919ac40a472d3c32b44e41038abf3b0f6059f"
 metafile = true
