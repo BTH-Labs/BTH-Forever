@@ -1,0 +1,69 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+env:
+  MODPACK_DIR: BTH-Forever
+
+jobs:
+  release:
+    name: Build & publish to Modrinth
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+
+      - name: Install nix
+        uses: cachix/install-nix-action@2126ae7fc54c9df00dd18f7f18754393182c73cd # v31.9.1
+
+      - name: Resolve release metadata
+        id: meta
+        working-directory: ${{ env.MODPACK_DIR }}
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+          if [[ "$version" == *-* ]]; then
+            echo "version-type=beta" >> "$GITHUB_OUTPUT"
+            echo "prerelease=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "version-type=release" >> "$GITHUB_OUTPUT"
+            echo "prerelease=false" >> "$GITHUB_OUTPUT"
+          fi
+
+          game_version=$(grep -oP 'minecraft = "\K[^"]+' pack.toml)
+          echo "game-version=$game_version" >> "$GITHUB_OUTPUT"
+
+          echo "::notice ::⚙ Releasing $version ($game_version) as ${version/#*-/}"
+
+      - name: Export Modrinth modpack
+        working-directory: ${{ env.MODPACK_DIR }}
+        run: |
+          nix develop --command packwiz modrinth export
+          echo "::notice ::☀ Exported ${{ env.MODPACK_DIR }} as .mrpack"
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2.6.2
+        with:
+          files: ${{ env.MODPACK_DIR }}/*.mrpack
+          prerelease: ${{ steps.meta.outputs.prerelease }}
+          generate_release_notes: true
+
+      - name: Publish to Modrinth
+        uses: Kir-Antipov/mc-publish@995edadc13559a8b28d0b7e6571229f067ec7659 # v3.3.0
+        with:
+          modrinth-id: ${{ secrets.MODRINTH_ID }}
+          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+          loaders: neoforge
+          game-versions: ${{ steps.meta.outputs.game-version }}
+          version: ${{ steps.meta.outputs.version }}
+          version-type: ${{ steps.meta.outputs.version-type }}
+          files: ${{ env.MODPACK_DIR }}/*.mrpack
+          changelog-file: ${{ env.MODPACK_DIR }}/CHANGELOG.md
