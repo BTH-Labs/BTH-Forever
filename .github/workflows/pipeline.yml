@@ -26,7 +26,7 @@ jobs:
     steps:
 
       - name: Check Out Git Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: List Modpacks
         id: list-modpacks
@@ -76,7 +76,7 @@ jobs:
 
       - name: Perform Release with Release Please
         id: release-please
-        uses: google-github-actions/release-please-action@v3
+        uses: google-github-actions/release-please-action@v4
         with:
           monorepo-tags: true
           path: ${{ matrix.modpack }}
@@ -101,7 +101,7 @@ jobs:
 
 
       - name: Check Out Git Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -117,7 +117,7 @@ jobs:
 
       - name: Get Latest tag
         id: tag
-        uses: WyriHaximus/github-action-get-previous-tag@v1
+        uses: WyriHaximus/github-action-get-previous-tag@v2
         if: ${{ steps.release-please.outputs.releases_created }}
 
       - name: Parse Pack File
