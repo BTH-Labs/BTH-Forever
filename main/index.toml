@@ -1181,7 +1181,7 @@ metafile = true
 
 [[files]]
 file = "servers.dat"
-hash = "97d6ebd5a620b534e135ab64a3498ceef5b29582c967d63b9c3ba3c01576a885"
+hash = "ffccb0203f6fa4b8fdf4ad7d0f9581e4695c628e318511f21a3b3b176340c6d8"
 
 [[files]]
 file = "shaderpacks/bsl-shaders.pw.toml"
