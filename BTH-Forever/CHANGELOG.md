@@ -3,6 +3,13 @@
 ## 1.0.0 (2026-06-05)
 
 
+### Features
+
+* **modpack/BTH-Forever:** Updated Modpack Name ([9c99a25](https://github.com/BTH-Labs/BTH-Forever/commit/9c99a25ac7e8bb80cdfbe1350838dea7715d4abe))
+
+## 1.0.0 (2026-06-05)
+
+
 ### ★ Features
 
 * **modpack/main:** add Fresh Animations ([16567c9](https://github.com/BTH-Labs/BTH-Forever/commit/16567c924d71b88ecc675f8e2071b891417d9fe2))
