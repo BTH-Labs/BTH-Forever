@@ -2,7 +2,7 @@ hash-format = "sha256"
 
 [[files]]
 file = "config/DistantHorizons.toml"
-hash = "84f7f1ecd4e6e651ed71a69845a179d0b95c8fb67b7800f9e91eeeaef6798ff0"
+hash = "d9ab3b2f5ff9d77ee7848b4f185706021ac5e04c45721e488a40b41b0beefb93"
 
 [[files]]
 file = "config/fancymenu/assets/background.jpg"
