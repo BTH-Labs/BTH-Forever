@@ -1166,6 +1166,10 @@ hash = "9d9b074b2425fc4f19808b7d6df4a0baeae39a37e909107aaa85004df1a2d195"
 metafile = true
 
 [[files]]
+file = "options.txt"
+hash = "975034d623f82cfa2f2a3fbb6fd8abd8837dffbf6674898b1adce76beb9ca654"
+
+[[files]]
 file = "resourcepacks/fresh-animations.pw.toml"
 hash = "6a1556a0e4fcb411b33efafc3382b4abd9a6e671f140dc0d42e9aad2808e24f3"
 metafile = true
@@ -1174,6 +1178,10 @@ metafile = true
 file = "resourcepacks/tras-fresh-player.pw.toml"
 hash = "32fe0fe8941110f8fba07ce7768faa1797de6b28e961ab65b483c380fc0a365a"
 metafile = true
+
+[[files]]
+file = "servers.dat"
+hash = "97d6ebd5a620b534e135ab64a3498ceef5b29582c967d63b9c3ba3c01576a885"
 
 [[files]]
 file = "shaderpacks/bsl-shaders.pw.toml"
