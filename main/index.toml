@@ -5,6 +5,26 @@ file = "config/DistantHorizons.toml"
 hash = "84f7f1ecd4e6e651ed71a69845a179d0b95c8fb67b7800f9e91eeeaef6798ff0"
 
 [[files]]
+file = "config/jade/hide-blocks.json"
+hash = "309df4ae96864c19eae41b646d58497c85a73b1fc3c584e772ef4d5822794baa"
+
+[[files]]
+file = "config/jade/hide-entities.json"
+hash = "3741bb54a4535fb5a00fb0ee1f4386f3dd17834aebdf9e89c21fcd3307109709"
+
+[[files]]
+file = "config/jade/jade.json"
+hash = "a1b47169d3e256d322f0b8b423abf5e4f386ad38bcb21fd321f38d42da422088"
+
+[[files]]
+file = "config/jade/plugins.json"
+hash = "43a51e4479bb679c2ccfea2c243e152f88aceafa79c6addbff67a37e860a849f"
+
+[[files]]
+file = "config/jade/sort-order.json"
+hash = "9800ac200b4fef59af1e165b215c203c9ef241522f9a40dbaa43d1efeaf737b5"
+
+[[files]]
 file = "config/tooltipoverhaul/custom_frames.json"
 hash = "21900b1331c5a88fa8853f2ae65434ec218b7253232b8e8b4a44203531c7cebd"
 
