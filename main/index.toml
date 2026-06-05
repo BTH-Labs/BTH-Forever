@@ -947,6 +947,11 @@ hash = "148c5d14dfeca914d20ceea4defa9660fe588e6fc22cea23cab745504d4b2453"
 metafile = true
 
 [[files]]
+file = "mods/terralith.pw.toml"
+hash = "da7ee99189ad35aac094919fe33cac647d98533b23c228f10d4811f08989e2b8"
+metafile = true
+
+[[files]]
 file = "mods/the-bumblezone.pw.toml"
 hash = "66e646f0a977b1745f0b9b14d1139f17b37908ed8ab03e77e422998e8565ff20"
 metafile = true
