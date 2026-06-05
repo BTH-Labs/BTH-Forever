@@ -807,11 +807,6 @@ hash = "22dde7441f5bd5d2b4699d00f0efed79f75664dade5a66a36f181a0a823c751c"
 metafile = true
 
 [[files]]
-file = "mods/realistic-bees.pw.toml"
-hash = "c2e9b7324f1bdc58a32843a32d6ccc8b000119335a6aabf4c59dab0d3ee1c397"
-metafile = true
-
-[[files]]
 file = "mods/recipe-essentials-forge-fabric.pw.toml"
 hash = "fba0893c1da8c6e93beb9dac0e03228ebc108e3016a44d43c6e4d1faea2a16f2"
 metafile = true
