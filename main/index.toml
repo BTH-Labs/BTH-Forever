@@ -927,6 +927,11 @@ hash = "593fa7b30ab016aa45be07bd6bef3a9f160ed0f24689850d60bf84995d69b843"
 metafile = true
 
 [[files]]
+file = "mods/spice-of-life-onion.pw.toml"
+hash = "6d22056366c7d5e3a8a79a8549a4b7209702d021590d8b3003de525f1bf29a63"
+metafile = true
+
+[[files]]
 file = "mods/status-effect-bars-reforged.pw.toml"
 hash = "96e36c447f00cf42622a78091883f054ec8ff708b285ef1351668cb00f081804"
 metafile = true
