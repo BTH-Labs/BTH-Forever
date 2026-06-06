@@ -1,0 +1,95 @@
+name: "Bug / crash report"
+description: Report a bug or a crash in BTH Forever.
+title: "[Bug] <short summary>"
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. The more detail you give (logs especially), the
+        faster this can be tracked down. Please search
+        [existing issues](https://github.com/BTH-Labs/BTH-Forever/issues?q=is%3Aissue+label%3Abug)
+        first.
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      options:
+        - Crash (game closes or fails to load)
+        - Bug (wrong or broken behavior, no crash)
+    validations:
+      required: true
+  - type: input
+    id: pack-version
+    attributes:
+      label: Modpack version
+      description: The BTH Forever version where this happens (see pack.toml or the Modrinth release).
+      placeholder: e.g. 1.0.1
+    validations:
+      required: true
+  - type: dropdown
+    id: side
+    attributes:
+      label: Where does it happen?
+      options:
+        - Singleplayer
+        - Multiplayer / dedicated server
+        - Both
+        - During launch (before reaching a world)
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Describe the bug or crash.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Go to ...
+        2. Do ...
+        3. See the crash / wrong behavior
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What did you expect to happen instead?
+    validations:
+      required: false
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs and crash report
+      description: |
+        Paste the relevant log or crash report. For crashes, attach the file from
+        `crash-reports/` and/or `logs/latest.log`. Use a paste service like
+        https://mclo.gs/ for large logs and link it here.
+      render: text
+    validations:
+      required: false
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Launcher, Java version, and anything else relevant.
+      placeholder: |
+        - Launcher: Prism / Modrinth App / ...
+        - Java: 21
+        - OS: Windows 11
+    validations:
+      required: false
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Checklist
+      options:
+        - label: I am running an unmodified BTH Forever pack (no extra mods added)
+          required: false
+        - label: I searched existing issues and this is not a duplicate
+          required: true
