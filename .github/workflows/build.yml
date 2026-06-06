@@ -47,6 +47,10 @@ jobs:
       - name: Refresh & export modpack
         working-directory: ${{ env.MODPACK_DIR }}
         run: |
+          # index.toml is gitignored; packwiz refresh updates an existing index
+          # rather than creating one, so seed an empty header on a fresh checkout.
+          # refresh then rebuilds every [[files]] entry from the pack folders.
+          [ -f index.toml ] || printf 'hash-format = "sha256"\n' > index.toml
           nix develop --command packwiz refresh
           nix develop --command packwiz modrinth export
 

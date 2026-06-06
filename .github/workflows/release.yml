@@ -46,6 +46,9 @@ jobs:
       - name: Export Modrinth modpack
         working-directory: ${{ env.MODPACK_DIR }}
         run: |
+          # index.toml is gitignored; seed an empty header so packwiz refresh
+          # can rebuild every [[files]] entry from the pack folders.
+          [ -f index.toml ] || printf 'hash-format = "sha256"\n' > index.toml
           nix develop --command packwiz refresh
           nix develop --command packwiz modrinth export
           echo "::notice ::☀ Exported ${{ env.MODPACK_DIR }} as .mrpack"

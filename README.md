@@ -89,6 +89,9 @@ anything globally:
 ```bash
 nix develop                       # enter the shell
 cd BTH-Forever
+# index.toml is gitignored; seed an empty header once on a fresh clone so
+# packwiz has an index to update (it rebuilds the entries from the pack folders).
+[ -f index.toml ] || printf 'hash-format = "sha256"\n' > index.toml
 packwiz update -a                 # update all mods
 packwiz refresh                   # regenerate index.toml + hashes
 packwiz modrinth export           # build a .mrpack locally
