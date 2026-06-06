@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Modpack on Modrinth
+    url: https://modrinth.com/
+    about: Download the latest BTH Forever release and read mod details.
+  - name: Question or general discussion
+    about: Not a mod request or a bug? Start a discussion instead of opening an issue.
+    url: https://github.com/BTH-Labs/BTH-Forever/discussions

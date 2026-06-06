@@ -1,0 +1,48 @@
+name: "Mod request: update a mod"
+description: Request that a mod in BTH Forever be updated to a newer version.
+title: "[Update] <mod name>"
+labels: ["mod request", "update"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Most mods are kept current automatically. Use this when a specific mod
+        is behind, or when a new version fixes a problem or adds something you need.
+  - type: input
+    id: mod-name
+    attributes:
+      label: Mod name
+      placeholder: e.g. Sodium
+    validations:
+      required: true
+  - type: input
+    id: mod-link
+    attributes:
+      label: Mod page
+      description: Link to the Modrinth or CurseForge page.
+      placeholder: https://modrinth.com/mod/...
+    validations:
+      required: true
+  - type: input
+    id: current-version
+    attributes:
+      label: Current version in pack
+      description: The version currently shipped, if you know it.
+      placeholder: e.g. 0.5.11
+    validations:
+      required: false
+  - type: input
+    id: target-version
+    attributes:
+      label: Requested version
+      description: The version you want it updated to.
+      placeholder: e.g. 0.6.0 (for MC 1.21.1 / NeoForge)
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: Why update?
+      description: What does the newer version fix or add? Link to changelog if available.
+    validations:
+      required: true
