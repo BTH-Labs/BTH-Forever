@@ -46,6 +46,7 @@ jobs:
       - name: Export Modrinth modpack
         working-directory: ${{ env.MODPACK_DIR }}
         run: |
+          nix develop --command packwiz refresh
           nix develop --command packwiz modrinth export
           echo "::notice ::☀ Exported ${{ env.MODPACK_DIR }} as .mrpack"
 

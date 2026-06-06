@@ -27,13 +27,21 @@ holds that definition plus the GitHub Actions that build and publish it.
 ```
 BTH-Forever/            # the packwiz modpack
 ├── pack.toml           # pack metadata (name, version, MC + NeoForge versions)
-├── index.toml          # packwiz file index
+├── index.toml          # packwiz file index — GENERATED, not committed (gitignored)
 ├── mods/               # one *.pw.toml per mod
 ├── config/             # bundled client configs
 └── CHANGELOG.md        # used as the Modrinth changelog on release
 flake.nix               # nix devShell that provides packwiz
 .github/workflows/      # build + release automation
 ```
+
+> **Why isn't `index.toml` committed, and why is `pack.toml`'s hash blank?** packwiz regenerates
+> `index.toml` (and the `[index]` hash inside `pack.toml`) from the `mods/*.pw.toml` files on every
+> `packwiz refresh`. If those generated values were committed, two people adding mods at the same
+> time would conflict on the same lines. They are treated as build artifacts instead: `index.toml`
+> is gitignored, and `pack.toml` is committed with an empty `hash = ""`. CI runs `packwiz refresh`
+> before every build and release, so the real values are always recomputed. A guard step in
+> `build.yml` fails the build if either generated value is ever committed.
 
 ## How releases work
 
@@ -48,7 +56,7 @@ exports the pack with packwiz to catch broken mod metadata early, and uploads th
 ### `release.yml`: tag-triggered publish
 Runs when a version tag is pushed. It:
 
-1. Exports the Modrinth `.mrpack` with packwiz (inside the nix devShell).
+1. Refreshes and exports the Modrinth `.mrpack` with packwiz (inside the nix devShell).
 2. Derives the version and game version from the tag and `pack.toml`.
 3. Creates a GitHub release with the `.mrpack` attached and auto-generated notes.
 4. Publishes to Modrinth using [`mc-publish`](https://github.com/Kir-Antipov/mc-publish),
@@ -82,11 +90,18 @@ anything globally:
 nix develop                       # enter the shell
 cd BTH-Forever
 packwiz update -a                 # update all mods
+packwiz refresh                   # regenerate index.toml + hashes
 packwiz modrinth export           # build a .mrpack locally
 ```
 
 Without nix, install [packwiz](https://packwiz.infra.link/installation/) yourself and run the
 same commands from inside the `BTH-Forever/` directory.
+
+When you add a mod, **commit only the new `mods/<mod>.pw.toml` file** (and any config). Running
+`packwiz refresh`/`export` will rewrite `pack.toml`'s `[index]` hash and regenerate `index.toml`
+in your working tree — do **not** commit those. `index.toml` is gitignored, and `pack.toml`'s hash
+must stay `""` in git (CI fills it in). If you accidentally commit either, the `build.yml` guard
+will fail with instructions to revert it.
 
 ## Acknowledgments
 
