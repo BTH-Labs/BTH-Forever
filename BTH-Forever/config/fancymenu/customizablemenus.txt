@@ -27,3 +27,6 @@ net.minecraft.client.gui.screens.ProgressScreen {
 net.minecraft.client.gui.screens.ReceivingLevelScreen {
 }
 
+net.minecraft.client.gui.screens.worldselection.CreateWorldScreen {
+}
+
