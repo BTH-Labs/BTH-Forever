@@ -18,6 +18,8 @@
 - Removed: structureessentials-1.21.1-5.0.jar
 - Removed: recipeessentials-1.21-4.0.jar
 - Removed: clickadv-1.21-3.8.jar
+- Removed: Twilight Forest
+- Removed: Twilight Delight
 - Added: Open Parties and Claims (Replacement for the above)
 - Added: Clientsort
 - Added: Polymorph
