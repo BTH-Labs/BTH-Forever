@@ -1,0 +1,53 @@
+name: "Mod request: remove a mod"
+description: Request that a mod be removed from BTH Forever.
+title: "[Remove] <mod name>"
+labels: ["mod request", "removal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this to flag a mod that should be dropped from the pack (broken,
+        unwanted, abandoned, or causing problems).
+  - type: input
+    id: mod-name
+    attributes:
+      label: Mod name
+      description: The mod you want removed. Match the name as it appears in the pack.
+      placeholder: e.g. Some Mod
+    validations:
+      required: true
+  - type: input
+    id: mod-link
+    attributes:
+      label: Mod page
+      description: Link to the Modrinth or CurseForge page, if you have it.
+      placeholder: https://modrinth.com/mod/...
+    validations:
+      required: false
+  - type: dropdown
+    id: reason-category
+    attributes:
+      label: Reason category
+      options:
+        - Causes crashes or instability
+        - Conflicts with another mod
+        - Abandoned or no longer updated
+        - Performance impact
+        - No longer wanted in the pack
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: Details
+      description: Explain why this mod should be removed.
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact of removal
+      description: Does anything else in the pack depend on it? Any worlds or features that would break?
+    validations:
+      required: false

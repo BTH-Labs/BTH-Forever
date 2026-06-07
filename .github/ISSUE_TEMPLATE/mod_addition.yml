@@ -1,0 +1,70 @@
+name: "Mod request: add a mod"
+description: Suggest a new mod to add to BTH Forever.
+title: "[Add] <mod name>"
+labels: ["mod request", "addition"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a mod! Please check the existing
+        [open mod requests](https://github.com/BTH-Labs/BTH-Forever/issues?q=is%3Aissue+label%3A%22mod+request%22)
+        and the current mod list first so we avoid duplicates.
+  - type: input
+    id: mod-name
+    attributes:
+      label: Mod name
+      placeholder: e.g. Sodium
+    validations:
+      required: true
+  - type: input
+    id: mod-link
+    attributes:
+      label: Mod page
+      description: Link to the Modrinth (preferred) or CurseForge page.
+      placeholder: https://modrinth.com/mod/...
+    validations:
+      required: true
+  - type: dropdown
+    id: side
+    attributes:
+      label: Side
+      description: Where does this mod need to run?
+      options:
+        - Client only
+        - Server only
+        - Both client and server
+        - Not sure
+    validations:
+      required: true
+  - type: checkboxes
+    id: compatibility
+    attributes:
+      label: Compatibility
+      description: Confirm the mod fits this pack before requesting.
+      options:
+        - label: It supports Minecraft 1.21.1
+          required: true
+        - label: It supports the NeoForge loader
+          required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: Why should it be added?
+      description: What does this mod add or improve for the pack?
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      description: List any required dependency mods, or write "none".
+      placeholder: e.g. requires Fabric API equivalent / library mod X
+    validations:
+      required: false
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional notes
+      description: Known incompatibilities, config suggestions, or anything else.
+    validations:
+      required: false
