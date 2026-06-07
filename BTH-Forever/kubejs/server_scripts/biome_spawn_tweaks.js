@@ -1,9 +1,17 @@
 // BTH Forever - biome spawn tweaks
 //
-// Makes the Let's Do mobs spawn in matching Terralith biomes by adding those
-// biomes to the spawn biome *tags* each mod already uses to decide where its
-// mobs appear. Tags merge additively, so this only ADDS biomes - it never
-// removes a mod's own entries, and the mods' own spawn weights are reused.
+// Makes modded mobs (Let's Do, Naturalist, Friends&Foes) spawn in matching
+// Terralith biomes by adding those biomes to the spawn biome *tags* each mod
+// already uses to decide where its mobs appear. Tags merge additively, so this
+// only ADDS biomes - it never removes a mod's own entries, and the mods' own
+// spawn weights are reused.
+//
+// Mods NOT listed here were checked and need nothing: they already key their
+// spawns on vanilla #minecraft:is_* tags (Hexalia, Forbidden Arcanus) or on
+// #is_overworld / permissive include-all (Aquaculture fish), all of which
+// Terralith biomes already belong to; or their mobs come from structures /
+// their own dimension (Bosses'Rise, Bumblezone, Twilight Forest, Create
+// Dragons Plus).
 //
 // -------------------------------------------------------------------------
 // HOW TO ADD / CHANGE AN ENTRY
@@ -208,6 +216,124 @@ const SPAWN_TWEAKS = {
     'terralith:steppe',
     'terralith:mountain_steppe',
   ],
+
+  // ===== Naturalist =========================================================
+  // Naturalist already covers forest / taiga / savanna / mountain / badlands /
+  // jungle via #minecraft:is_* tags (which Terralith injects into). The entries
+  // below only fill the gaps where Naturalist used LITERAL vanilla biomes
+  // (swamp, desert, plains, beach, river) that Terralith does not extend.
+
+  // Alligator - warm swamps and slow rivers (river was a literal biome).
+  'naturalist:has_alligator': ['terralith:orchid_swamp', 'terralith:warm_river'],
+  // Bass - still freshwater (river already #is_river).
+  'naturalist:has_bass': ['terralith:orchid_swamp'],
+  // Catfish - murky swamp water.
+  'naturalist:has_catfish': ['terralith:orchid_swamp'],
+  // Dragonfly - wetlands and riversides.
+  'naturalist:has_dragonfly': ['terralith:orchid_swamp', 'terralith:warm_river'],
+  // Duck - ponds and swamps (river already #is_river).
+  'naturalist:has_duck': ['terralith:orchid_swamp'],
+  // Snake - dry grassland and wetlands (forest already covered).
+  'naturalist:has_snake': [
+    'terralith:steppe',
+    'terralith:shrubland',
+    'terralith:brushland',
+    'terralith:valley_clearing',
+    'terralith:orchid_swamp',
+  ],
+  // Snail - damp grassland and wetlands.
+  'naturalist:has_snail': [
+    'terralith:orchid_swamp',
+    'terralith:valley_clearing',
+    'terralith:blooming_valley',
+  ],
+  // Lizard - hot deserts and dry scrub (jungle / savanna already covered).
+  'naturalist:has_lizard': [
+    'terralith:ancient_sands',
+    'terralith:desert_canyon',
+    'terralith:desert_spires',
+    'terralith:lush_desert',
+    'terralith:sandstone_valley',
+    'terralith:red_oasis',
+  ],
+  // Tortoise - deserts and dry shrub (jungle already covered).
+  'naturalist:has_tortoise': [
+    'terralith:ancient_sands',
+    'terralith:desert_canyon',
+    'terralith:lush_desert',
+    'terralith:sandstone_valley',
+  ],
+  // Rattlesnake - arid deserts and rocky drylands (savanna / badlands covered).
+  'naturalist:has_rattlesnake': [
+    'terralith:ancient_sands',
+    'terralith:desert_canyon',
+    'terralith:desert_spires',
+    'terralith:lush_desert',
+    'terralith:sandstone_valley',
+    'terralith:white_mesa',
+    'terralith:red_oasis',
+    'terralith:gravel_desert',
+  ],
+  // Vulture - deserts, badlands and barren ground (savanna / badlands covered).
+  'naturalist:has_vulture': [
+    'terralith:ancient_sands',
+    'terralith:desert_canyon',
+    'terralith:desert_spires',
+    'terralith:lush_desert',
+    'terralith:sandstone_valley',
+    'terralith:white_mesa',
+    'terralith:gravel_desert',
+    'terralith:snowy_badlands',
+  ],
+  // Coral Snake - sandy coasts and dry sands (jungle / river already covered).
+  'naturalist:has_coral_snake': ['terralith:gravel_beach', 'terralith:ancient_sands'],
+  // Sparrow - open grassland (vanilla: plains + cherry grove only, no #tag).
+  'naturalist:has_sparrow': [
+    'terralith:steppe',
+    'terralith:shrubland',
+    'terralith:brushland',
+    'terralith:valley_clearing',
+    'terralith:shield_clearing',
+    'terralith:blooming_valley',
+    'terralith:mountain_steppe',
+  ],
+  // Robin - grassland and meadow edges (forest / mountain already covered).
+  'naturalist:has_robin': [
+    'terralith:valley_clearing',
+    'terralith:shield_clearing',
+    'terralith:steppe',
+    'terralith:blooming_valley',
+  ],
+  // Butterfly - flowery meadows and wetlands (forest already covered).
+  'naturalist:has_butterfly': [
+    'terralith:blooming_valley',
+    'terralith:blooming_plateau',
+    'terralith:lavender_valley',
+    'terralith:valley_clearing',
+    'terralith:orchid_swamp',
+  ],
+  // Firefly - damp grassland and wetlands (forest already covered).
+  'naturalist:has_firefly': [
+    'terralith:orchid_swamp',
+    'terralith:blooming_valley',
+    'terralith:valley_clearing',
+  ],
+  // Bluejay - cold open country (taiga / hill already covered).
+  'naturalist:has_bluejay': ['terralith:cold_shrubland', 'terralith:snowy_badlands'],
+
+  // ===== Friends&Foes =======================================================
+  // Friends&Foes already ships Terralith compat for its snowy / taiga mobs
+  // (iceologer, illusioner) and uses #is_* / #forge:is_* for the maulers. Only
+  // its literal-biome spawns need help.
+
+  // Moobloom (buttercup) - flowery meadows.
+  'friendsandfoes:has_moobloom/buttercup': [
+    'terralith:blooming_valley',
+    'terralith:blooming_plateau',
+    'terralith:lavender_valley',
+  ],
+  // Crab - beaches and wetlands.
+  'friendsandfoes:has_crab': ['terralith:gravel_beach', 'terralith:orchid_swamp'],
 }
 
 ServerEvents.tags('worldgen/biome', event => {
