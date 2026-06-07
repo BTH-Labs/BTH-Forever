@@ -1,0 +1,13 @@
+name = "Interactive Achievment Messages"
+filename = "interactiveachievmentmessages-neoforge-1.21.1-1.0.0.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/hlTJ7F8X/versions/e22UT2qk/interactiveachievmentmessages-neoforge-1.21.1-1.0.0.jar"
+hash-format = "sha512"
+hash = "b39002e7895195001314735f4e1c411be204419e30a7edf7708c37c0f38a3662bc00d76fc62e53436e30e10c0fd94a1258ec8741f426347e449d0d1097767d74"
+
+[update]
+[update.modrinth]
+mod-id = "hlTJ7F8X"
+version = "e22UT2qk"
