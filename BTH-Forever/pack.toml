@@ -1,6 +1,6 @@
 name = "BTH Forever"
 author = "BTH Labs"
-version = "1.1.1"
+version = "dev"
 pack-format = "packwiz:1.1.0"
 
 [index]
