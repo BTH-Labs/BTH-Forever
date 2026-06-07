@@ -1,5 +1,11 @@
 # 📋 Changelog
 
+## v1.1.1
+
+### ⭐ Mod Changes
+
+- Removed: Dynamic View
+
 ## v1.1.0
 
 ### ⭐ Mod Changes
