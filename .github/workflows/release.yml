@@ -23,6 +23,12 @@ jobs:
       - name: Install nix
         uses: cachix/install-nix-action@8aa03977d8d733052d78f4e008a241fd1dbf36b3 # v31.10.6
 
+      - name: Set up Java
+        uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # v5.2.0
+        with:
+          distribution: temurin
+          java-version: '21'
+
       - name: Resolve release metadata
         id: meta
         working-directory: ${{ env.MODPACK_DIR }}
@@ -41,6 +47,9 @@ jobs:
           game_version=$(grep -oP 'minecraft = "\K[^"]+' pack.toml)
           echo "game-version=$game_version" >> "$GITHUB_OUTPUT"
 
+          neoforge_version=$(grep -oP 'neoforge = "\K[^"]+' pack.toml)
+          echo "neoforge-version=$neoforge_version" >> "$GITHUB_OUTPUT"
+
           echo "::notice ::⚙ Releasing $version ($game_version) as ${version/#*-/}"
 
       - name: Export Modrinth modpack
@@ -53,10 +62,64 @@ jobs:
           nix develop --command packwiz modrinth export
           echo "::notice ::☀ Exported ${{ env.MODPACK_DIR }} as .mrpack"
 
+      - name: Build server pack
+        id: serverpack
+        working-directory: ${{ env.MODPACK_DIR }}
+        run: |
+          set -euo pipefail
+          version="${{ steps.meta.outputs.version }}"
+          neoforge="${{ steps.meta.outputs.neoforge-version }}"
+
+          # Serve the refreshed pack locally so packwiz-installer can resolve
+          # pack.toml and pull every file marked side = server | both.
+          nix develop --command packwiz serve &
+          serve_pid=$!
+          trap 'kill "$serve_pid" 2>/dev/null || true' EXIT
+
+          for _ in $(seq 1 30); do
+            curl -sf http://localhost:8080/pack.toml >/dev/null && break
+            sleep 1
+          done
+
+          mkdir -p server
+          curl -fsSL -o server/packwiz-installer-bootstrap.jar \
+            https://github.com/packwiz/packwiz-installer-bootstrap/releases/latest/download/packwiz-installer-bootstrap.jar
+          (cd server && java -jar packwiz-installer-bootstrap.jar -g -s server http://localhost:8080/pack.toml)
+
+          # Drop the installer helpers and client-only artefacts.
+          rm -f server/packwiz-installer-bootstrap.jar server/packwiz-installer.jar
+          rm -rf server/resourcepacks server/shaderpacks
+          rm -f server/options.txt server/servers.dat
+
+          # Install the NeoForge dedicated server so the pack is ready to run.
+          curl -fsSL -o server/neoforge-installer.jar \
+            "https://maven.neoforged.net/releases/net/neoforged/neoforge/${neoforge}/neoforge-${neoforge}-installer.jar"
+          (cd server && java -jar neoforge-installer.jar --installServer)
+          rm -f server/neoforge-installer.jar server/neoforge-installer.jar.log
+
+          cat > server/README.txt <<EOF
+          BTH Forever ${version} - Dedicated Server (Minecraft ${{ steps.meta.outputs.game-version }}, NeoForge ${neoforge})
+
+          1. Extract this archive into an empty folder.
+          2. Set "eula=false" to "eula=true" in eula.txt to accept the Minecraft EULA
+             (https://aka.ms/MinecraftEULA). On first launch eula.txt is created for you.
+          3. Start the server:
+               Linux/macOS:  ./run.sh
+               Windows:      run.bat
+          4. Adjust memory and JVM flags in user_jvm_args.txt as needed.
+          EOF
+
+          zip_name="BTH-Forever-Server-${version}.zip"
+          (cd server && zip -qr "../${zip_name}" .)
+          echo "zip=${zip_name}" >> "$GITHUB_OUTPUT"
+          echo "::notice ::📦 Built server pack ${zip_name}"
+
       - name: Create GitHub release
         uses: softprops/action-gh-release@b4309332981a82ec1c5618f44dd2e27cc8bfbfda # v3.0.0
         with:
-          files: ${{ env.MODPACK_DIR }}/*.mrpack
+          files: |
+            ${{ env.MODPACK_DIR }}/*.mrpack
+            ${{ env.MODPACK_DIR }}/${{ steps.serverpack.outputs.zip }}
           prerelease: ${{ steps.meta.outputs.prerelease }}
           generate_release_notes: true
 
