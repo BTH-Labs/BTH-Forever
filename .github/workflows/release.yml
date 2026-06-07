@@ -36,6 +36,11 @@ jobs:
           version="${GITHUB_REF_NAME#v}"
           echo "version=$version" >> "$GITHUB_OUTPUT"
 
+          # Stamp the tag version into pack.toml so every exported artifact
+          # (.mrpack, server pack, Modrinth release) reports the released
+          # version. Anchored to ^version to leave pack-format untouched.
+          sed -i -E "s/^version = \".*\"/version = \"$version\"/" pack.toml
+
           if [[ "$version" == *-* ]]; then
             echo "version-type=beta" >> "$GITHUB_OUTPUT"
             echo "prerelease=true" >> "$GITHUB_OUTPUT"
