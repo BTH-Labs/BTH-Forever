@@ -1,5 +1,11 @@
 # 📋 Changelog
 
+## v1.2.0
+
+### ⭐ Mod Changes
+
+- Added: Create Schematic Uploader
+
 ## v1.1.1
 
 ### ⭐ Mod Changes
