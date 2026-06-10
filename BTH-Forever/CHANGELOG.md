@@ -4,6 +4,9 @@
 
 ### ⭐ Mod Changes
 
+- Added: Vanilla Backport
+- Added: Platform
+- Added: Vanilla Backport compat
 - Updated: collective-1.21.1-8.25
 - Updated: colorwheel-neoforge-1.2.9+mc1.21.1
 - Updated: CreateDragonsPlus-1.11.2b
