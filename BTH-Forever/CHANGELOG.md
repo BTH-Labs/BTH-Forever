@@ -4,6 +4,7 @@
 
 ### ⭐ Mod Changes
 
+- Added: Create Schematic Uploader
 - Added: Vanilla Backport
 - Added: Platform
 - Added: Vanilla Backport compat
