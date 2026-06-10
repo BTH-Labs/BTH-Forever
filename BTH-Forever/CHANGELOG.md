@@ -1,5 +1,13 @@
 # 📋 Changelog
 
+## v1.2.0
+
+### ⭐ Mod Changes
+
+- Added Vanilla Backport
+- Added Platform
+- Added Vanilla Backport compat
+
 ## v1.1.1
 
 ### ⭐ Mod Changes
